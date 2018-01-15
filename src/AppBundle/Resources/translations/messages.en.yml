@@ -1,0 +1,14 @@
+home:
+  welcome: Hello world
+  building: Building
+  home: Home
+  login: Login
+  logout: Log Out
+  register: Register
+products:
+  titre: Title
+  description: Description
+  prix: Price
+  show: CV
+  add: Add CV
+  send: Submit

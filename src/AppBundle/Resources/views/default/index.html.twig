@@ -1,0 +1,45 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{%  block body %}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ path('homepage') }}">Mystery Soul's</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ path('homepage') }}">{{ 'home.home'|trans }}</a></li>
+                <li><a href="{{ path('show_cv') }}">{{ 'products.show'|trans }}</a></li>
+            </ul>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-remove"></span> {{ 'home.logout'|trans }}</a></li>
+            </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-user"></span>{{ 'home.register'|trans }}</a></li>
+                    <li><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span>{{ 'home.login'|trans }}</a></li>
+                </ul>
+            {% endif %}
+        </div>
+    </nav>
+    <h1><center>CV MARLON MARTINE</h1></center>
+    <br>
+    <br>
+    <br>
+    <center><img src="http://www.creeruncv.com/sites/default/files/133-cv-travailleur-independant.png" alt="AH"/></center>
+    <br>
+    <h1><center>Pour partager vos ressentis rendez vous dans la catégorie "Blog"</h1></center>
+    <center>{{ parent() }}</center>
+
+
+   {#<script type="text/javascript" language="javascript">#}
+        {#var prenom = prompt("Quel est votre nom ???", "")#}
+        {#if (prenom == "" || prenom == "null") {#}
+            {#alert("le champs est vide !")#}
+        {#}#}
+        {#else {#}
+            {#document.location.href = "http://localhost/projet1/web/app_dev.php/user/".concat(prenom)#}
+        {#}#}
+
+    {#</script>#}
+{% endblock %}

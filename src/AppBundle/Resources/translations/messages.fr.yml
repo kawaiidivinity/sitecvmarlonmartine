@@ -1,0 +1,14 @@
+home:
+  welcome: Bonjour
+  building: En construction
+  home: Acceuil
+  login: Se connecter
+  logout: Se deconnecter
+  register: S'enregistrer
+products:
+  titre: Titre
+  description: Description
+  prix: Prix
+  show: CV
+  add: Ajouter un CV
+  send: Envoyer

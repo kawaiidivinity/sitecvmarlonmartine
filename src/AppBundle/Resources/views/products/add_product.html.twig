@@ -1,0 +1,59 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% form_theme form 'form_div_layout.html.twig' %}
+
+{% block styles %}
+    <style>
+        .required { color: red; !important }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ path('homepage') }}">Mystery Soul's</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ path('homepage') }}">{{ 'home.home'|trans }}</a></li>
+                <li><a href="{{ path('show_cv') }}">{{ 'products.show'|trans }}</a></li>
+                <li><a href="{{ path('add_cv') }}">{{ 'products.add'|trans }}</a></li>
+            </ul>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-remove"></span> {{ 'home.logout'|trans }}</a></li>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-user"></span>{{ 'home.register'|trans }}</a></li>
+                    <li><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span>{{ 'home.login'|trans }}</a></li>
+                </ul>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{ 'products.add'|trans }}</h1>
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'form-horizontal'}}) }}
+                <div>
+                    {{ form_label(form.title) }}
+                    {{ form_widget(form.title) }}
+                    {{ form_errors(form.title) }}
+                </div>
+                <div>
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description) }}
+                    {{ form_errors(form.description) }}
+                </div>
+                <div>
+                    {{ form_label(form.price) }}
+                    {{ form_widget(form.price) }}
+                    {{ form_errors(form.price) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    {{ parent() }}
+{% endblock %}

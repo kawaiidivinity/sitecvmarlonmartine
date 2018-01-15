@@ -1,0 +1,70 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ path('homepage') }}">Mystery Soul's</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ path('homepage') }}">{{ 'home.home'|trans }}</a></li>
+                <li><a href="{{ path('show_cv') }}">{{ 'products.show'|trans }}</a></li>
+                <li><a href="{{ path('add_cv') }}">{{ 'products.add'|trans }}</a></li>
+            </ul>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-remove"></span> {{ 'home.logout'|trans }}</a></li>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-user"></span>{{ 'home.register'|trans }}</a></li>
+                    <li><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span>{{ 'home.login'|trans }}</a></li>
+                </ul>
+            {% endif %}
+        </div>
+    </nav>
+    <h1>{{ 'products.show'|trans }}</h1>
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>
+                            <a href="{{ path('show_cv',
+                            {'key': 'title', 'dir': key=='title' and dir=='asc'?'desc':'asc'})
+                            }}">
+                                {{ 'products.titre'|trans }} <i class="{{ key=='title' and dir=='desc'?'down':'up' }}"></i>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="{{ path('show_cv', {'key': 'price', 'dir': key=='price' and dir=='asc'?'desc':'asc'}) }}">
+                                {{ 'products.prix'|trans }} <i class="{{ key=='price' and dir=='desc'?'down':'up' }}"></i>
+                            </a>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <th scope="row">{{ product.id }}</th>
+                            <td>
+                                <a href="{{ path('show_product', {'id': product.id}) }}">
+                                    {{ product.title }}
+                                </a>
+                            </td>
+                            <td>{{ product.price }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <center><a href="{{ path('homepage') }} " class="btn btn-info" role="button">{{ 'home.home'|trans }}</a></center>
+                <center>{{ parent() }}</center>
+            </div>
+        </div>
+    </div>
+{% endblock %}
