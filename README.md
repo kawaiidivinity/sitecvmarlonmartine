@@ -70,3 +70,5 @@ Enjoy!
 [11]: https://symfony.com/doc/3.3/logging.html
 [13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
 [14]: https://symfony.com/doc/current/setup/built_in_web_server.html
+
+Projet remplie d'erreur pas le temps de rendre un contenue fonctionnel mise a part celui ci, il contient donc un index, la base de donnée du cours, la création et utilisation d'un formulaire php, une plateform de login et d'administration.
